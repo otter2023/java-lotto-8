@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
 
@@ -16,5 +16,15 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public Rank calculateRank(Lotto winningLotto, int bonusNumber) {
+        int matchCount = matchCount(winningLotto);
+        boolean hasBonus = containNumber(bonusNumber);
+        return Rank.of(matchCount, hasBonus);
+    }
+
+    private boolean containNumber(int bonusNumber) {
+    }
+
+    private int matchCount(Lotto winningLotto) {
+    }
 }
