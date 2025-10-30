@@ -22,9 +22,24 @@ public class Lotto {
         return Rank.of(matchCount, hasBonus);
     }
 
-    private boolean containNumber(int bonusNumber) {
+    private int matchCount(Lotto winningLotto) {
+        return (int) numbers.stream()
+                .filter(winningLotto::containNumber)
+                .count();
+        /* 하단의 코드와 동일, 단 하단의 코드는 depth = 3
+        int count = 0;
+        for (int number : numbers) {
+            if (winningLotto.containNumber(number)){
+                count++;
+            }
+        }
+        return count;
+         */
     }
 
-    private int matchCount(Lotto winningLotto) {
+    // numbers가 private이므로 캡슐화를 지키기 위한 메소드
+    private boolean containNumber(int number) {
+        return numbers.contains(number);
     }
+
 }
