@@ -8,26 +8,18 @@ import java.util.Map;
 public class Lottos {
     private final List<Lotto> lottos;
 
-    public Lottos(Money money) {
-        this.lottos = createLottos(money);
+    public Lottos(int count) {
+        this.lottos = createLottos(count);
     }
 
-    public List<Lotto> createLottos(Money money) {
+    public List<Lotto> createLottos(int count) {
         List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < money.getValue(); i++) {
+
+        for (int i = 0; i < count; i++) {
             lottos.add(LottoGenerator.generate());
         }
 
         return lottos;
-    }
-
-    public void printLottos() {
-        lottos.forEach(System.out::println);
-        /* 아래와 동일한 코드
-        for (Lotto lotto : lottos) {
-           System.out.println(lotto);
-        }
-         */
     }
 
     // TODO : 필요하다면 리팩토링
@@ -42,4 +34,11 @@ public class Lottos {
         return results;
     }
 
+    public int getCount() {
+        return lottos.size();
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }
