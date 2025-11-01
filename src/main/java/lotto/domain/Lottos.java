@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import lotto.service.LottoGenerator;
-
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
@@ -9,16 +7,14 @@ import java.util.Map;
 
 public class Lottos {
     private final List<Lotto> lottos;
-    private int count;
 
-    public Lottos(int count) {
-        this.lottos = createLottos(count);
-        this.count = count;
+    public Lottos(Money money) {
+        this.lottos = createLottos(money);
     }
 
-    public List<Lotto> createLottos(int count) {
+    public List<Lotto> createLottos(Money money) {
         List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < money.getValue(); i++) {
             lottos.add(LottoGenerator.generate());
         }
 
