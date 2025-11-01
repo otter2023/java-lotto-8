@@ -3,7 +3,7 @@ package utils;
 public class Parser {
 
     public static int stringToInt(String input) {
-        return Integer.parseInt(input);
+        isNotNull(input);
         try {
             return Integer.parseInt(input.trim());
         } catch (NumberFormatException e) {
@@ -11,4 +11,9 @@ public class Parser {
         }
     }
 
+    public static void isNotNull(String input){
+        if (input == null || input.trim().isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 문자열이 비어 있습니다.");
+        }
+    }
 }
