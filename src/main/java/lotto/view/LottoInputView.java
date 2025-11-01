@@ -6,6 +6,14 @@ import utils.Parser;
 
 public class LottoInputView {
 
+    private static final String WINNING_NUMBER_REGEX =
+            "^" +             // 문자열 시작
+            "\\s*" +          // 앞쪽 공백 허용
+            "\\d+" +          // 첫 숫자 (1개 이상)
+            "(\\s*,\\s*\\d+)*" + // 콤마(,) 앞뒤 공백 허용 + 숫자 반복
+            "\\s*" +          // 마지막 공백 허용
+            "$";              // 문자열 끝
+
     public String amount() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
@@ -44,7 +52,7 @@ public class LottoInputView {
     }
 
     private void validateWinningNumbersFormat(String winningNumbers){
-        if (!winningNumbers.matches("^\\d+(,\\d+)*$")){
+        if (!winningNumbers.matches(WINNING_NUMBER_REGEX)){
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자와 콤마가 번갈아 나와야 합니다.");
         }
     }
