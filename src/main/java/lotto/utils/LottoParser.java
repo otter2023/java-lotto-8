@@ -19,5 +19,4 @@ public class LottoParser {
 
         return new Lotto(numbers);
     }
-
 }
