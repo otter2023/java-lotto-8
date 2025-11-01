@@ -2,9 +2,11 @@ package lotto.controller;
 
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.domain.Money;
 import lotto.domain.Rank;
 import lotto.service.LottoService;
 import lotto.utils.LottoParser;
+import lotto.validator.LottoValidator;
 import utils.Parser;
 import lotto.view.LottoInputView;
 import lotto.view.LottoOutputView;
@@ -25,17 +27,20 @@ public class LottoController {
 
     public void run() {
         int amount = Parser.stringToInt(inputView.amount());
+        Money money = new Money(amount);
+        Lottos purchaselottos = service.createLottos(money);
 
-        Lottos purchaselottos = service.createLottos(amount);
-
-        outputView.printPurchasedLottos(purchaselottos, amount);
+        outputView.purchasedLottos(purchaselottos);
 
         Lotto winningLotto = LottoParser.stringToLotto(inputView.winningNumbers());
         int bonusNumber = Parser.stringToInt(inputView.bonusNumber());
 
+        LottoValidator.validateBonusNotDuplicate(winningLotto, bonusNumber);
+
         Map<Rank, Integer> result = service.calculateRanks(purchaselottos, winningLotto, bonusNumber);
+        int prize = service.calculatePrize(result);
 
-        outputView.printResult(result);
+        outputView.ranksResult(result, prize);
+        outputView.totalRateOfPrize(money, prize);
     }
-
 }
