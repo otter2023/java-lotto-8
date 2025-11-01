@@ -17,7 +17,6 @@ public class LottoInputView {
     public String amount() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
-        validateIsInteger(input);
         validateIsPositive(input);
         return input;
     }
@@ -32,17 +31,8 @@ public class LottoInputView {
     public String bonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
-        validateIsInteger(input);
         validateIsPositive(input);
         return input;
-    }
-
-    private void validateIsInteger(String amount) {
-        try {
-            Integer.parseInt(amount);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액 형식은 정수여야 합니다.");
-        }
     }
 
     private void validateIsPositive(String amount) {
