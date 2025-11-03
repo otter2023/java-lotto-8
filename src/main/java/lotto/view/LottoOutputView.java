@@ -4,6 +4,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.Rank;
+import utils.Parser;
 
 import java.util.Map;
 
@@ -30,6 +31,7 @@ public class LottoOutputView {
     }
 
     public void totalRateOfPrize(Money money, int prize) {
-        System.out.println("총 수익률은 " + money.calculateRateOfPrize(prize) + "%입니다.");
+        double result = Parser.round(money.calculateRateOfPrize(prize));
+        System.out.println("총 수익률은 " + result + "%입니다.");
     }
 }
