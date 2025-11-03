@@ -2,6 +2,8 @@ package utils;
 
 public class Parser {
 
+    public static final int SCALE = 2;
+
     public static int stringToInt(String input) {
         isNotNull(input);
         try {
@@ -17,8 +19,8 @@ public class Parser {
         }
     }
 
-    public static double round(double value, int scale) {
-        double factor = Math.pow(10, scale);
+    public static double round(double value) {
+        double factor = Math.pow(10, SCALE);
         return Math.round(value * factor) / factor;
     }
 }
